@@ -1,0 +1,59 @@
+2) 
+import math
+import random
+
+alphab="абвгдеёжзийклмнопрстуфхцчшщъыьэюяABCDEFGHIJKLMNOPQRSTUVWXYZ"
+P = math.pow(10, -5)
+V = 4320  # паролей в день
+T = 10   # дней
+
+
+S = (V * T) / P
+A = len(alphab)
+L = 0
+
+print("S=",S)
+while math.pow(A, L) <= S:
+    L += 1
+
+
+password = ""
+for _ in range(L):
+    password += alphab[random.randint(0, A-1)]
+print(f"Ваш пароль:\n{password}")
+print(f"Пароль будет взломан через {A**L*P/V}")
+
+input("Нажмите enter, чтобы закрыть консоль.")
+
+3)
+import math
+alphab ="abcdefghijklmnopqrstuvwxyz"
+
+words = ["scleroses", "scoliosis", "paradantoz"]
+result = ''
+if alphab[alphab.index(words[0][1])+1] != "z":
+    result += alphab[alphab.index(words[0][1])+1]
+else:
+    result += "a"
+if alphab[alphab.index(words[1][2])-1] != "z":
+    result += alphab[alphab.index(words[1][-2])-1]
+else:
+    result += "z"
+
+if len(words[2])/2 != int(len(words[2])/2):
+    if alphab[alphab.index(words[2][int(len(words[2])/2)])+1] == "z":
+        result += "a"
+    else:
+        flwindex = int(len(words[2])/2)
+        result += alphab[alphab.index(words[2][flwindex])+1]
+else:
+    if alphab[alphab.index(words[2][int(len(words[2])/2-1)])-1] != "a":
+        result += alphab[alphab.index(words[2][int(len(words[2])/2-1)])-1]
+    else:
+        result += "z"
+
+index = len(words[0]) + len(words[2]) + 1
+if index > 26:
+    index %= 26
+result += alphab[index - 1]
+print(result)
